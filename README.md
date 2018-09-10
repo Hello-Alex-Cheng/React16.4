@@ -71,6 +71,11 @@
          传递方法 : 
             ps : 一定要 记得 bind(this)
             <TodoItem  testBtn = {this.btnAlert.bind(this)} /> // TodoItem 组件可以通过 this.props.tesBtn() 调用方法
+           
+            子组件get属性的时候，可以将属性提取出来，结构赋值需要加 {}
+            例如 : 
+                const { testBtn } = this.props ;
+                这样就可以直接使用 testBtn 这个方法了 !!
     
     6. dangerouslySetInnerHTML
          
