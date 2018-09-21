@@ -1,0 +1,11 @@
+
+/** 通过 combineReducer 来整合所有组件的私有 reducer */
+/** 每一个组件都要创建一个 reducer ,这个 reducer 包含了组件的所有数据和对数据的操作*/
+/** 优点 : 简化代码，提升查询速度，性能优化 */
+import { combineReducers } from 'redux';
+
+import headerReducer from '../common/header/store';
+
+export default combineReducers({
+  headerReducer
+});
