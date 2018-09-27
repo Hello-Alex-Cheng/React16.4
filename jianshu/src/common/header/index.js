@@ -30,7 +30,7 @@ class Header extends Component {
   render(){
     /** 模块赋值
      */
-    const { focused, handleInputBlur, handleInputFocus } = this.props;
+    const { focused, list, handleInputBlur, handleInputFocus } = this.props;
     return (
       <HeaderWrapper>
         <Logo />
@@ -45,7 +45,7 @@ class Header extends Component {
             <NavSearch
               className = {focused ? 'focused' : ''}
               onBlur = { handleInputBlur }
-              onFocus = { handleInputFocus }
+              onFocus = { () => handleInputFocus(list) }
             >
             </NavSearch>
             <i className = { focused ? 'focused iconfont zoom' : 'iconfont zoom' }>&#xe606;</i>
@@ -119,8 +119,10 @@ const mapDispatchToProps = ( dispatch ) => {
     },
 
     /** 输入框聚焦的时候, 聚焦的时候，使用redux-thunk 请求 searchInfo 数据 */
-    handleInputFocus(){
-      dispatch( actionCreators.getList() );
+    handleInputFocus(list){
+      list.size === 0 && dispatch(actionCreators.getList());
+      // && 运算符，如果第一个表达式为false则返回第一个表达式的值，第二个表达式不执行
+      
       dispatch( actionCreators.searchFocus() );
     },
 

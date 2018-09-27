@@ -43,3 +43,29 @@
     注意 : 使用create-react-app来建立工程，底层也是建立在 node 服务的基础之上的
     当我们请求数据的时候，它会先到我们的src 目录下寻找是否有对应的路由，其次还会到 public 目录下寻找
     所以我们可以将我们需要请求的 .json 数据放到 public目录下，可以通过 localhost:3000 访问到！
+
+六. react-router-dom ( react-router 4.0.0 以上 )
+    npm install react-router-dom --save-dev
+    import { BroswerRouter, Route } from 'react-router-dom';
+
+七. 组件嵌套
+    通过路由Route中的 component 
+    <BrowserRouter>
+        <div>
+            <Route path='/' exact component= { Home } ></Route>
+            <Route path='/detail' exact component= { Detail } ></Route>
+        </div>
+    </BrowserRouter>
+
+    这样，子组件就都能访问到父组件中的props了，别忘了，我们的组件都是写在 <Provider store= { store }> 标签下
+
+    1.给组件写单独的 小 reducer,方便管理 state，导入到最大的reducer中通过 combineReducers 整合到一起
+
+    2.使得组件跟 store 建立连接 ，从 react-redux 中导入 connect( toState, toDispatch )(组件)
+      如果不需要改变state里面的内容，我们可以不用传入第二个参数
+    
+    3.最后，我们通过 this.props.xxx 来拿到 store 里面的值~
+
+    
+    
+
