@@ -6,6 +6,12 @@ import List from './components/List';
 import Recommend from './components/Recommend';
 import Writer from './components/Writer';
 
+/**使得组件和 store 连接起来 */
+import { connect } from 'react-redux';
+
+/**使用actionCreators.js 来创建action以及发送异步请求 */
+import { actionCreators } from './store';
+
 /** 引入样式 */
 import { 
   HomeWrapper,
@@ -36,6 +42,18 @@ class Home extends Component {
       </HomeWrapper>
     );
   }
+
+  componentWillMount() {
+    this.props.getHomeData();
+  }
 }
 
-export default Home;
+const mapDispatch = ( dispatch ) => {
+  return {
+    getHomeData(){
+      dispatch(actionCreators.getHomeData());
+    }
+  }
+}
+
+export default connect(null, mapDispatch)(Home);

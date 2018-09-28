@@ -80,3 +80,58 @@ export const ListInfo = styled.div`
     color: #999;
   }
 `;
+
+/** 右侧推荐部分样式 */
+export const RecWrrapper = styled.div`
+  width: 240px;
+  height: auto;
+`;
+export const RecItem = styled.div`
+  .rec-img {
+    width: 240px;
+    margin-bottom: 10px;
+  }
+`;
+
+/** 左侧作者部分样式 */
+export const WriterWrrapper = styled.div`
+  width : 240px;
+  background-color: #fff;
+  padding: 20px 0px;
+  overflow: hidden;
+  .focusWriter {
+    margin-top: 16px;
+  }
+`;
+export const RefreshWriter = styled.span`
+  float: right;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`;
+export const WriterItem = styled.div`
+  width: 100%;
+  overflow: hidden;
+  line-height: 24px;
+  margin-bottom: 24px;
+  .writerImg {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 6px;
+  }
+  .writerName {
+    overflow: hidden;
+    font-size: 14px;
+    span {
+      float: right;
+      color: #42c02e;
+    }
+  }
+  .writerInfo {
+    font-size: 13px;
+    color: #969696;
+  }
+`;

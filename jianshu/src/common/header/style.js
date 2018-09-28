@@ -77,6 +77,7 @@ export const SearchInfo = styled.div`
   width : 200px;
   height : auto;
   box-shadow : 0 0 8px rgba(0,0,0,.2);
+  background-color: #fff;
 `;
 export const SearchInfoTitle = styled.div`
   margin-top: 20px;
