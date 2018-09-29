@@ -4,6 +4,7 @@ export const HomeWrapper = styled.div`
   overflow: hidden;
   width: 960px;
   margin: 0 auto;
+  padding-bottom: 48px;
 `;
 export const HomeLeft = styled.div`
   float: left;
@@ -134,4 +135,17 @@ export const WriterItem = styled.div`
     font-size: 13px;
     color: #969696;
   }
+`;
+
+/** 加载更多按钮 */
+export const LoadMore = styled.div`
+  width: 100%;
+  height: 40px;
+  margin: 30px 0;
+  background-color: #a5a5a5;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  cursor: pointer;
 `;

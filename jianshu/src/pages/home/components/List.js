@@ -3,21 +3,24 @@ import React, { Component } from 'react';
 /** 使用 connect 将 store 和 组件 联系起来 */
 import { connect } from 'react-redux';
 
+import { actionCreators } from '../store'
+
 import { 
   ListWrraper,
   ListInfo,
+  LoadMore
 } from '../style';
 
 class List extends Component {
 
   render(){
-    const { articleList } = this.props;
+    const { articleList, page, getMoreList } = this.props;
     return (
       <div>
         {
-          articleList.map((item) => {
+          articleList.map((item, index) => {
             return (
-              <ListWrraper key= { item.get("id") }>
+              <ListWrraper key= { index }>
                 <img className= "list-img" src= { item.get("imgUrl") } alt=""/>
                 <ListInfo>
                   <h3 className= "listTitle">{ item.get("title") }</h3>
@@ -27,13 +30,22 @@ class List extends Component {
             );
           })
         }
+        <LoadMore onClick= { () => getMoreList(page) }>加载更多</LoadMore>
       </div>
     );
   }
 }
 
 const mapState = (state) => ({
-  articleList: state.getIn(["homeReducer","articleList"])
+  articleList: state.getIn(["homeReducer","articleList"]),
+  page: state.getIn(["homeReducer","articlePage"])
 });
 
-export default connect( mapState, null )(List);
+const mapDispatch = (dispatch) => ({
+  getMoreList(page) {
+    const action = actionCreators.getMoreList(page);
+    dispatch(action);
+  }
+});
+
+export default connect( mapState, mapDispatch )(List);
