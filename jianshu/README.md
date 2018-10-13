@@ -66,6 +66,54 @@
     
     3.最后，我们通过 this.props.xxx 来拿到 store 里面的值~
 
-    
-    
+八. 登录/退出功能
+    import { Redirect } from 'react-router-dom'  重定向路由
+    return <Redirect to="/login"/>
+
+    如果我们需要改变别的组件里面的数据，那么我们就需要引入别的组件里面的actionCreators，将action派发到别的reducer中，
+    从而改变别的组件里面的数据
+
+九.下载react-loadable第三方模块，来处理异步组件问题
+    npm install react-loadable来处理异步组件加载
+
+    import React from 'react';
+    import Loadable from 'react-loadable';
+
+    const LoadableComponent = Loadable({
+        //loader 中的import 是导入当前目录下的index.js,也就是你需要展示的文件
+        //loading 表示在页面加载完成之前需要展示的东西，可以写一个好看点的组件，或者loading动画
+        loader: () => import('./'),
+        loading: () => {
+            return (
+                <div>
+                    正在加载detail组件中的js文件，请稍等...
+                </div>
+            );
+        },
+    });
+
+    /*
+        可以使用无状态组件来代替下面的 export default
+        export default () => {
+            return <LoadableComponent />;
+        };
+    */
+
+    export default class App extends React.Component {
+        render() {
+            return <LoadableComponent/>;
+        }
+    };
+
+十. withRouter
+    import { withRouter } from 'react-router-dom'
+
+    当我们使用了react-loadable这种第三方模块之后，我们引入就不是原本的组件了，而是引入了 loadable.js 文件
+    那么我们还是使用之前通过路由来获取参数的方式就会报错了 
+    ( this.props.match.params.id )
+
+    所以我们要是用 withRouter 
+    它可以使得组件能够获取路由中所有的参数和内容
+    export default connect(mapState, mapDispatch)(withRouter(Detail));
+        
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HomeWrapper = styled.div`
   overflow: hidden;
   width: 960px;
-  margin: 0 auto;
+  margin: 1px auto;
   padding-bottom: 48px;
 `;
 export const HomeLeft = styled.div`

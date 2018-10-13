@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 
 /** 导入所有的 actionCreators , store/index.js */
 import { actionCreators } from './store';
+import { actionCreators as logoutActionCreators } from '../../pages/login/store'
+
+/** 引入跳转路由 Link */
+import { Link } from 'react-router-dom'
 
 /** 导入局部样式 */
 import {
@@ -30,7 +34,7 @@ class Header extends Component {
   render(){
     /** 模块赋值
      */
-    const { focused, list, handleInputBlur, handleInputFocus } = this.props;
+    const { focused, list, handleInputBlur, handleInputFocus, login, logout } = this.props;
     return (
       <HeaderWrapper>
         <Logo />
@@ -40,7 +44,9 @@ class Header extends Component {
           <NavItem className ='right'>
             <i className ='iconfont'>&#xe636;</i>
           </NavItem>
-          <NavItem className ='right'>登录</NavItem>
+          {
+            login ? <NavItem onClick={ logout } className ='right'>退出</NavItem> : <NavItem className ='right'><Link style={{color: '#000', textDecoration: 'none'}} to="/login">登录</Link></NavItem>
+          }
           <SearchWrapper>
             <NavSearch
               className = {focused ? 'focused' : ''}
@@ -53,7 +59,9 @@ class Header extends Component {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Button className ='writing'> <i className ='iconfont'>&#xe6a4;</i> 写文章</Button>
+          <Link to="/write">
+            <Button className ='writing'> <i className ='iconfont'>&#xe6a4;</i> 写文章</Button>
+          </Link>
           <Button className ='reg'>注册</Button>
         </Addition>
       </HeaderWrapper>
@@ -106,7 +114,8 @@ const mapStateToProps = ( state ) => {
     list : state.getIn(['headerReducer','list']),
     page : state.getIn(['headerReducer','page']),
     totalPage : state.getIn(['headerReducer','totalPage']),
-    mouseIn : state.getIn(['headerReducer','mouseIn'])
+    mouseIn : state.getIn(['headerReducer','mouseIn']),
+    login : state.getIn(['loginReducer', 'login'])
   };
 };
 
@@ -152,6 +161,12 @@ const mapDispatchToProps = ( dispatch ) => {
         page = 1;
       }
       dispatch( actionCreators.pageCounter(page) );
+    },
+
+    /** 退出 */
+    logout () {
+      console.log("logout")
+      dispatch (logoutActionCreators.logout())
     }
   };
 }

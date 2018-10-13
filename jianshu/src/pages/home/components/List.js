@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 
 import { actionCreators } from '../store'
 
+/** 引入路由link */
+import { Link } from 'react-router-dom'
+
 import { 
   ListWrraper,
   ListInfo,
@@ -20,13 +23,15 @@ class List extends Component {
         {
           articleList.map((item, index) => {
             return (
-              <ListWrraper key= { index }>
-                <img className= "list-img" src= { item.get("imgUrl") } alt=""/>
-                <ListInfo>
-                  <h3 className= "listTitle">{ item.get("title") }</h3>
-                  <p className= "description">{ item.get("description") }</p>
-                </ListInfo>
-              </ListWrraper>
+              <Link style={{color: '#000'}} key={index} to= {"/detail/" + item.get("id")}>
+                <ListWrraper key= { index }>
+                  <img className= "list-img" src= { item.get("imgUrl") } alt=""/>
+                  <ListInfo>
+                    <h3 className= "listTitle">{ item.get("title") }</h3>
+                    <p className= "description">{ item.get("description") }</p>
+                  </ListInfo>
+                </ListWrraper>
+              </Link>
             );
           })
         }
